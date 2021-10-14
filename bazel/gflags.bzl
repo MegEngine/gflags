@@ -56,6 +56,14 @@ def gflags_sources(namespace=["google", "gflags"]):
             "src/windows_port.cc",
             "src/windows_port.h",
         ],
+        "//:x86_windows_xp": [
+            "src/windows_port.cc",
+            "src/windows_port.h",
+        ],
+        "//:x86_windows": [
+            "src/windows_port.cc",
+            "src/windows_port.h",
+        ],
         "//conditions:default": [],
     })
     return [hdrs, srcs]
@@ -80,6 +88,12 @@ def gflags_library(hdrs=[], srcs=[], threads=1):
         "//:x64_windows": [
             "-DOS_WINDOWS",
         ],
+        "//:x86_windows_xp": [
+            "-DOS_WINDOWS",
+        ],
+        "//:x86_windows": [
+            "-DOS_WINDOWS",
+        ],
         "//conditions:default": [
             "-DHAVE_UNISTD_H",
             "-DHAVE_FNMATCH_H",
@@ -90,6 +104,8 @@ def gflags_library(hdrs=[], srcs=[], threads=1):
     if threads:
         linkopts += select({
             "//:x64_windows": [],
+            "//:x86_windows_xp": [],
+            "//:x86_windows": [],
             "//conditions:default": ["-lpthread"],
         })
     else:

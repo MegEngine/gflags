@@ -235,7 +235,6 @@ if (MSVC)
   set (HAVE_STDDEF_H    1) # used by CheckTypeSize module
   set (HAVE_UNISTD_H    0)
   set (HAVE_SYS_STAT_H  1)
-  set (HAVE_SHLWAPI_H   1)
   if (MSVC_VERSION VERSION_LESS 1600)
     check_include_file_cxx ("stdint.h" HAVE_STDINT_H)
     bool_to_int (HAVE_STDINT_H)  # used in #if directive
@@ -256,9 +255,6 @@ else ()
       check_include_file_cxx ("${fname}.h" HAVE_${FNAME}_H)
     endif ()
   endforeach ()
-  if (NOT HAVE_FNMATCH_H AND OS_WINDOWS)
-    check_include_file_cxx ("shlwapi.h" HAVE_SHLWAPI_H)
-  endif ()
   # the following are used in #if directives not #ifdef
   bool_to_int (HAVE_STDINT_H)
   bool_to_int (HAVE_SYS_TYPES_H)
